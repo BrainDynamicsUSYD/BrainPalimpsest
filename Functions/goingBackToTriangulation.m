@@ -11,7 +11,7 @@ function [overlay_quantity] = goingBackToTriangulation(hemisphere, scanNo, ...
 %         scanNo            : scan number to be processed
 %                             Possible fields are 
 %                             1 for the expanding ring data
-%                             2, 3, ..., 11 for the expanding wedge data.
+%                             2, 3, ..., 11 for the expanding arc data.
 %         grid_quantiy      : array of gridded quantity 
 %         F                 : interpolant object
 %         xcoords           : vector of x coordinates
@@ -24,11 +24,11 @@ function [overlay_quantity] = goingBackToTriangulation(hemisphere, scanNo, ...
 %% Preparing the vertices, faces, and overlay
 
 % reading vertices of flat surface
-flat = read_patch(['Data/ExpandingRingAndExpandingWedge/FreesurferFiles/',hemisphere,...
+flat = read_patch(['Data/ExpandingRingAndExpandingArc/FreesurferFiles/',hemisphere,...
                        '.occip.flat.patch.3d']);
 
 % reading the vertex coordinates and face lists of white matter surface
-[~, fac] = read_surf(['Data/ExpandingRingAndExpandingWedge/FreesurferFiles/',hemisphere,...
+[~, fac] = read_surf(['Data/ExpandingRingAndExpandingArc/FreesurferFiles/',hemisphere,...
                        '.white']);
 
 % finding the face index of flat patch corresponding to white surface
@@ -41,7 +41,7 @@ fac2 = h2(sum3==3, :);
 flat_struct.Vertices = [flat.x; flat.y; flat.z].';
 
 % loading an overlay: BOLD data
-overlay_BOLD = MRIread(['Data/ExpandingRingAndExpandingWedge/Surfaces/', ...
+overlay_BOLD = MRIread(['Data/ExpandingRingAndExpandingArc/OriginalSurfaces/', ...
                          hemisphere,'.Scan',num2str(scanNo),'.mgz']);
 
 %% Getting the triangulated overlays

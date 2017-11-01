@@ -8,7 +8,7 @@ function [avg_grid] = averagingTimeSeries(scanNo, grid_data)
 % Inputs: scanNo        : scan number to be processed
 %                         Possible fields are 
 %                         1 for the expanding ring data
-%                         2, 3, ..., 11 for the expanding wedge data.
+%                         2, 3, ..., 11 for the expanding arc data.
 %         grid_data     : matrix of data
 %
 % Output: avg_grid      : matrix of average of grid_data
@@ -29,7 +29,7 @@ if scanNo == 1
     
     relevant_index = reshape(16:180, [cycles_length, cycles])';
 else
-    load(['Data/ExpandingRingAndExpandingWedge/TimingFiles/Scan' num2str(timingFileList(scanNo - 1)) '.mat'], ...
+    load(['Data/ExpandingRingAndExpandingArc/TimingFiles/Scan' num2str(timingFileList(scanNo - 1)) '.mat'], ...
         'start_trial_pulses');
     
     cycles = length(start_trial_pulses);

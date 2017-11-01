@@ -11,7 +11,7 @@ function [grid_BOLD, F] = makingGriddedFlat_BOLD(hemisphere, ...
 %         scanNo        : scan number to be processed
 %                         Possible fields are 
 %                         1 for the expanding ring data
-%                         2, 3, ..., 11 for the expanding wedge data.
+%                         2, 3, ..., 11 for the expanding arc data.
 %         resolution    : x and y spatial resolution in mm
 %         saveMatfile   : 1 or 0
 %                         Choose 1 if you want to save the mat file of the 
@@ -25,11 +25,11 @@ function [grid_BOLD, F] = makingGriddedFlat_BOLD(hemisphere, ...
 %% Preparing the vertices, faces, and overlay
 
 % reading vertices of flat surface
-flat = read_patch(['Data/ExpandingRingAndExpandingWedge/FreesurferFiles/',hemisphere,...
+flat = read_patch(['Data/ExpandingRingAndExpandingArc/FreesurferFiles/',hemisphere,...
                        '.occip.flat.patch.3d']);
 
 % reading the vertex coordinates and face lists of white matter surface
-[~, fac] = read_surf(['Data/ExpandingRingAndExpandingWedge/FreesurferFiles/',hemisphere,...
+[~, fac] = read_surf(['Data/ExpandingRingAndExpandingArc/FreesurferFiles/',hemisphere,...
                        '.white']);
 
 % finding the face index of flat patch corresponding to white surface
@@ -43,7 +43,7 @@ flat_struct.Vertices = [flat.x; flat.y; flat.z].';
 flat_struct.Faces = fac2;
 
 % loading an overlay: BOLD data
-overlay_BOLD = MRIread(['Data/ExpandingRingAndExpandingWedge/Surfaces/', ...
+overlay_BOLD = MRIread(['Data/ExpandingRingAndExpandingArc/OriginalSurfaces/', ...
                          hemisphere,'.Scan',num2str(scanNo),'.mgz']);
 
 %% Interpolating BOLD data
@@ -77,7 +77,7 @@ grid_BOLD(isnan(grid_BOLD)) = 0;
 %% Saving grid_BOLD and F in a mat file
 
 if saveMATfile
-    filename = ['Data/ExpandingRingAndExpandingWedge/GriddedMatFiles/',hemisphere,...
+    filename = ['Data/ExpandingRingAndExpandingArc/GriddedMatFiles/',hemisphere,...
                 '.Scan',num2str(scanNo),'_resolution=',num2str(resolution),'.mat'];
     save(filename, 'grid_BOLD', 'F')
 end

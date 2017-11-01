@@ -57,6 +57,7 @@ classdef loadParameters < matlab.mixin.Copyable
 
         % geometry parameters
         L       = 3e-3;                 % average cortical thickness [m]
+        Znorm   = 0.8;                  % estimation for average eigenfunction over z-direction
 
         % =====================================================================
         %                    COMPUTATIONAL PARAMETERS
@@ -109,7 +110,7 @@ classdef loadParameters < matlab.mixin.Copyable
             eta_val = obj.E_0/obj.tau;
         end
         function k_0_val = get.k_0(obj)
-            k_0_val = acos(0.8)/(obj.L);
+            k_0_val = acos(obj.Znorm)/(obj.L);
         end
         function C_z_val = get.C_z(obj)
             C_z_val = 1e-3/(obj.k_0^(-1)*sin(obj.k_0*obj.L));

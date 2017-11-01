@@ -21,11 +21,11 @@ function [grid_Benson, F_Benson] = makingGriddedFlat_Benson(hemisphere, ...
 %% Preparing the vertices, faces, and overlay
 
 % reading vertices of flat surface
-flat = read_patch(['Data/ExpandingRingAndExpandingWedge/FreesurferFiles/',hemisphere,...
+flat = read_patch(['Data/ExpandingRingAndExpandingArc/FreesurferFiles/',hemisphere,...
                        '.occip.flat.patch.3d']);
 
 % reading the vertex coordinates and face lists of white matter surface
-[~, fac] = read_surf(['Data/ExpandingRingAndExpandingWedge/FreesurferFiles/',hemisphere,...
+[~, fac] = read_surf(['Data/ExpandingRingAndExpandingArc/FreesurferFiles/',hemisphere,...
                        '.white']);
 
 % finding the face index of flat patch corresponding to white surface
@@ -39,7 +39,7 @@ flat_struct.Vertices = [flat.x; flat.y; flat.z].';
 flat_struct.Faces = fac2;
 
 % loading an overlay: Benson map
-overlay_Benson = MRIread(['Data/ExpandingRingAndExpandingWedge/FreesurferFiles/',hemisphere,...
+overlay_Benson = MRIread(['Data/ExpandingRingAndExpandingArc/FreesurferFiles/',hemisphere,...
                        '.bensonmap.mgz']);
 
 %% Interpolating Benson map
@@ -71,7 +71,7 @@ end
 %% Saving grid_Benson and F_Benson in a mat file
 
 if saveMATfile
-    filename = ['Data/ExpandingRingAndExpandingWedge/GriddedMatFiles/',hemisphere,...
+    filename = ['Data/ExpandingRingAndExpandingArc/GriddedMatFiles/',hemisphere,...
                 '.Benson_resolution=',num2str(resolution),'.mat'];
     save(filename, 'grid_Benson', 'F_Benson')
 end

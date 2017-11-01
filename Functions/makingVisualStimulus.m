@@ -3,7 +3,7 @@ function [v1_boundary, thmat, thmat_templateSpace, rmat, visualStimulus_raw, ...
     DataToDemonstrate, num_stimuli, isGridBenson, saveGridBenson)
 %% makingVisualStimulus.m
 %
-% Makes the visual stimulus of the expanding ring and expanding wedge data
+% Makes the visual stimulus of the expanding ring and expanding arc data
 % in grid form using the Benson template.
 %
 % Inputs: hemisphere        : string of hemisphere
@@ -12,7 +12,7 @@ function [v1_boundary, thmat, thmat_templateSpace, rmat, visualStimulus_raw, ...
 %         resolution        : x and y spatial resolution in mm
 %         DataToDemonstrate : string
 %                             Possible fields are 'ExpandingRing' and 
-%                             'ExpandingWedge'.
+%                             'ExpandingArc'.
 %         num_stimuli       : number of stimuli to be produced 
 %         isGridBenson      : 1 or 0
 %                             Choose 1 if a gridded form of the Benson 
@@ -49,7 +49,7 @@ d_s                 = (maxCortex-1)/(num_stimuli-1); % stepsize of the stimulus,
 %% Loading relevant files
 
 if isGridBenson
-    filename_Benson = ['Data/ExpandingRingAndExpandingWedge/GriddedMatFiles/',hemisphere,...
+    filename_Benson = ['Data/ExpandingRingAndExpandingArc/GriddedMatFiles/',hemisphere,...
                        '.Benson_resolution=',num2str(resolution),'.mat'];
     load(filename_Benson, 'grid_Benson')
 else
@@ -107,7 +107,7 @@ for k=1:num_stimuli
         rVF = mean(abs(z))*ones(size(thVF));
         combined = [thVF, rVF];
         unique_vals = unique(combined, 'rows', 'stable');
-    elseif strcmpi(DataToDemonstrate, 'ExpandingWedge')
+    elseif strcmpi(DataToDemonstrate, 'ExpandingArc')
         thVF = angle(z);
         rVF = abs(z);
         combined = [thVF, rVF];

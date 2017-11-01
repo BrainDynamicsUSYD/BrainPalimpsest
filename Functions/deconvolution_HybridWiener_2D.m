@@ -52,8 +52,6 @@ wsamp = (1/mean(diff(time)))*2*pi;
 
 % creating vectors of frequencies kx, ky, and w
 [kx, ky, w] = generate_kw_2D(kxsamp, kysamp, wsamp, Nkx, Nky, Nw);
-kx = kx/sqrt(2);
-ky = ky/sqrt(2);
 
 % calculate 2D transfer function to Y
 % T is a structure with possible fields: T_Yphi, T_Yz, T_YF, T_YXi, T_YQ, 
