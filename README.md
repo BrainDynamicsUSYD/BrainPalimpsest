@@ -6,6 +6,8 @@ deoxygenated hemoglobin (dHb) concentration, and response modes
 W (wave), L (local-oscillating), and D (local-decaying).
 
 
-Some important aspects before running the codes:
+Some important aspects before using the toolbox:
+
 1. Install Freesurfer from https://surfer.nmr.mgh.harvard.edu/
-2. Compile inplaceprod.c (in Functions folder) using Matlab C compiler
+
+2. [Build a `mex` file](https://au.mathworks.com/help/matlab/matlab_external/what-you-need-to-build-mex-files.html) from `inplaceprod.c `. This step requires to have [a C Matlab-compatible compiler installed](https://au.mathworks.com/support/compilers.html). 
