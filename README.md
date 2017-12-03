@@ -1,9 +1,17 @@
 # BrainPalimpsest
-Toolbox to deconvolve BOLD-fMRI data and simultaneously obtain 
-spatiotemporal images of the neural activity, neuroglial drive, 
-cerebral blood flow (CBF), cerebral blood volume (CBV), 
-deoxygenated hemoglobin (dHb) concentration, and response modes 
-W (wave), L (local-oscillating), and D (local-decaying).
+
+_What else than a natural and mighty palimpsest is the human brain?_ 
+_-- Thomas De Quincey_
+
+This toolbox provides deconvolution methods for BOLD-fMRI data and yields simultanesouly  
+spatiotemporal images of:
+
+- underlying neural activity,
+- neuroglial drive, 
+- cerebral blood flow (CBF), 
+- cerebral blood volume (CBV),
+- deoxygenated hemoglobin (dHb) concentration, and, 
+- response modes  W (wave), L (local-oscillating), and D (local-decaying).
 
 
 Some important aspects before using the toolbox:
