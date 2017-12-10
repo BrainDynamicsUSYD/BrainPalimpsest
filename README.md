@@ -3,14 +3,14 @@
 _What else than a natural and mighty palimpsest is the human brain?_ 
 _-- Thomas De Quincey_
 
-This toolbox provides deconvolution methods for BOLD-fMRI data and yields simultanesouly  
-spatiotemporal images of:
+This toolbox provides a deconvolution method for BOLD-fMRI data to simultaneously yield  
+spatiotemporal images of underlying:
 
-- underlying neural activity,
+- neural activity,
 - neuroglial drive, 
 - cerebral blood flow (CBF), 
 - cerebral blood volume (CBV),
-- deoxygenated hemoglobin (dHb) concentration, and, 
+- deoxygenated hemoglobin (dHb) concentration, and 
 - response modes  W (wave), L (local-oscillating), and D (local-decaying).
 
 # Before using the toolbox
