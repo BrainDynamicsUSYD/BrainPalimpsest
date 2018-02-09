@@ -17,7 +17,7 @@ spatiotemporal images of underlying:
 
 Some important aspects you need to do before using the toolbox:
 
-1. Install Freesurfer from https://surfer.nmr.mgh.harvard.edu/. In case this is not possible, decompress Freesurfer_functions.zip and add the patch of the folder to your Matlab directory. The folder contains m files required in the analysis of two-dimensional data.
+1. Install Freesurfer from https://surfer.nmr.mgh.harvard.edu/. In case this is not possible, decompress Freesurfer_functions.zip and add the path of the folder to your Matlab directory. The folder contains m files required in the analysis of two-dimensional data.
 
 2. [Build a `mex` file](https://au.mathworks.com/help/matlab/matlab_external/what-you-need-to-build-mex-files.html) from `inplaceprod.c `. This step requires to have [a C Matlab-compatible compiler installed](https://au.mathworks.com/support/compilers.html). 
 
