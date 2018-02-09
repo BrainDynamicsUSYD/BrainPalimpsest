@@ -17,7 +17,7 @@ spatiotemporal images of underlying:
 
 Some important aspects you need to do before using the toolbox:
 
-1. Install Freesurfer from https://surfer.nmr.mgh.harvard.edu/
+1. Install Freesurfer from https://surfer.nmr.mgh.harvard.edu/. In case this is not possible, decompress Freesurfer_functions.zip and add the patch of the folder to your Matlab directory. The folder contains m files required in the analysis of two-dimensional data.
 
 2. [Build a `mex` file](https://au.mathworks.com/help/matlab/matlab_external/what-you-need-to-build-mex-files.html) from `inplaceprod.c `. This step requires to have [a C Matlab-compatible compiler installed](https://au.mathworks.com/support/compilers.html). 
 
@@ -25,7 +25,7 @@ Some important aspects you need to do before using the toolbox:
 
 If you use our code in your research, please cite us as follows (will be updated as soon as the paper gets accepted):
 
-J.C. Pang, K.M. Aquino, P.A. Robinson, T.C. Lacy, M.M. Schira, New fMRI windows reveal a palimpsest of brain activity, hemodynamics, and physiology, submitted to NeuroImage, 2017.
+J.C. Pang, K.M. Aquino, P.A. Robinson, T.C. Lacy, M.M. Schira, New fMRI windows reveal a palimpsest of brain activity, hemodynamics, and physiology, submitted, 2017.
 
 # Other references related to this work
 
