@@ -3,14 +3,15 @@
 % This script shows all the necessary steps to produce the results for 
 % the 1D Stationary Ring data of the manuscript. 
 %
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% Adding the paths of the sub-directories for direct access of files
 % This is not necessary if entire Palimpsest toolbox is added to the Matlab 
 % path via addpath(genpath('PalimpsestToolboxLocation')) where
 % PalimpsestToolboxLocation is the location of the toolbox
 
-% addpath('Data', 'Functions', 'PlottingFunctions')
+addpath('Data', 'Functions', 'PlottingFunctions')
 
 %% Loading the default values of the model parameters 
 
@@ -90,7 +91,7 @@ end
 
 %% Processing the BOLD signal by refining resolution and padding zeros
 
-display('Processing resolution of BOLD signal ...')
+disp('Processing resolution of BOLD signal ...')
 
 % BOLD_processed is the processed BOLD signal
 % x and t are the new distance and time vectors, respectively
@@ -99,7 +100,7 @@ display('Processing resolution of BOLD signal ...')
                                 
 %% Deconvolution of 1D responses 
 
-display('Deconvolving the responses ...')
+disp('Deconvolving the responses ...')
 
 % changing the NSR term
 params.noise = 0.5;             % constant
@@ -109,7 +110,7 @@ deconvResponses = deconvolution_HybridWiener_1D(BOLD_processed, x, t, params);
 
 %% Plotting the result 
 
-display('Plotting and saving the results ...')
+disp('Plotting and saving the results ...')
 
 % boolean variable
 % Choose normalization = 1 if you want the responses to be normalized, 0
@@ -163,5 +164,5 @@ print(fig3, '-painters', '-depsc', 'Figures/ExperimentalResults_StationaryRing_C
 %% END
 
 close(fig1); close(fig2); close(fig3); close(fig4);
-display('Finished')
-display('')
+disp('Finished')
+disp('')

@@ -3,7 +3,7 @@ function fig = plot1D_Combined_SpatioTemporal_CenterTimeSeries(BOLD_signal, ...
 %% plot1D_Combined_SpatioTemporal_CenterTimeSeries.m
 %
 % Plots the 1D spatiotemporal responses and corresponding center responses 
-% (at x = 0) in a signle figure.
+% (at x = 0) in a single figure.
 %
 % Inputs: BOLD_signal   : array of BOLD signal (x,t)
 %                         size(BOLD_signal) = [length(distance), length(t)]
@@ -25,7 +25,8 @@ function fig = plot1D_Combined_SpatioTemporal_CenterTimeSeries(BOLD_signal, ...
 %
 % Output: fig           : figure handle of the resulting plot
 %
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 % find index of t=0

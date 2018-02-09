@@ -30,7 +30,8 @@ function [BOLD_processed, x, t] = BOLD_processing_1D(BOLD_signal, ...
 %                     t_experiment, params) % gives out the processed BOLD
 %                                             and new time/distance vectors 
 % 
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 % interpolate experimental response to increase resolution

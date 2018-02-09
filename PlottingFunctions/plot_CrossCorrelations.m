@@ -15,7 +15,8 @@ function fig = plot_CrossCorrelations(hemisphere, what_correlation)
 %
 % Output: fig               : figure handle of the resulting plot
 % 
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% Loading the correlation file
 
@@ -45,7 +46,7 @@ dt = mean(diff(t_lags));
 fig = figure('Position', [200, 200, 250, 800]);
 
 for j=1:length(responses)
-    subplot(length(responses), 1, j, 'Parent', fig, 'Position', [initial_x initial_y-height*y_factor*(j-1) width height])
+    subplot('Position', [initial_x initial_y-height*y_factor*(j-1) width height])
 
     data_mean = mean_correlations.(responses{plot_order(j)});
     data_std = std_correlations.(responses{plot_order(j)});

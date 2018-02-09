@@ -3,14 +3,15 @@
 % This script shows all the necessary steps to produce the results for 
 % both the 2D Expanding Ring and Expanding Arc data of the manuscript. 
 %
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% Adding the paths of the sub-directories for direct access of files
 % This is not necessary if entire Palimpsest toolbox is added to the Matlab 
 % path via addpath(genpath('PalimpsestToolboxLocation')) where
 % PalimpsestToolboxLocation is the location of the toolbox
 
-% addpath('Data', 'Functions', 'PlottingFunctions')
+addpath('Data', 'Functions', 'PlottingFunctions')
 
 %% Loading the default values of the model parameters 
 
@@ -45,7 +46,7 @@ if UseSampleData
     % If flattened gridded (matrix) form of data is available, set isGridBOLD = 1
     % If data is in flattened triangulated form and gridded form is not available, 
     % set isGridBOLD = 0 and the data will be converted to gridded form
-    isGridBOLD = 1;
+    isGridBOLD = 0;
     
     % Set x and y spatial resolution in mm of the gridded data
     resolution = 0.2;
@@ -62,7 +63,7 @@ if UseSampleData
                                                 % interpolant object 
     else
         [grid_BOLD, F] = makingGriddedFlat_BOLD(hemisphere, scanNo, ...
-                                                resolution, 1);
+                                                resolution, 0);
     end
     
     BOLD_signal = grid_BOLD;
@@ -129,19 +130,19 @@ params.tau_d = results.(astrocyte_scheme).tau_d;
 polar_deviation = 20;       % polar angle deviation from 90deg that will be 
                             % considered for the averaging of the time 
                             % evolution of responses in V1
-isGridBenson = 1;           % 1 if a gridded form of the Benson map is 
+isGridBenson = 0;           % 1 if a gridded form of the Benson map is 
                             % available, 0 otherwise
-isVisualStimulus = 1;       % 1 if visual stimuli were already created,
+isVisualStimulus = 0;       % 1 if visual stimuli were already created,
                             % 0 otherwise
 
 saveGridBenson = 1;         % save gridded Benson map in a mat file
 saveMAT = 1;                % save deconvolution results in a mat file
-saveOverlay = 1;            % save deconvolution results in freesurfer 
+saveOverlay = 1;            % save deconvolution results in freesurfer compatible file
                             % overlay format in a mgz file
 
 %% Processing the BOLD signal by refining resolution and padding zeros
 
-display('Processing resolution of BOLD signal ...')
+disp('Processing resolution of BOLD signal ...')
 
 params.Nkx = 2^7;
 params.Nky = 2^7;
@@ -154,7 +155,7 @@ params.Nw = 2^8;
                                 
 %% Deconvolution of 2D responses 
 
-display('Deconvolving the responses ...')
+disp('Deconvolving the responses ...')
 
 % changing the NSR term
 params.noise = 0.5;             % constant
@@ -163,7 +164,7 @@ deconvResponses = deconvolution_HybridWiener_2D(BOLD_processed, x, y, t, params)
 
 %% Return responses back to experimental x, y, and t space
 
-display('Processing the responses to return to experimental x, y, t ...')
+disp('Processing the responses to return to experimental x, y, t ...')
 
 responses = {'BOLD', 'reconvBOLD', 'neural', 'neuroglial', 'CBF', 'CBV', ...
              'dHb', 'Wmode', 'Lmode', 'Dmode'};
@@ -181,7 +182,7 @@ end
 
 %% Calculating the average time evolution of different eccentricities in V1
 
-display('Calculating 1D responses in V1...')
+disp('Calculating 1D responses in V1...')
 
 [templates, eccentricity, polar_angle, responses_1D] = ...
     calculatingV1AverageTimeEvolution(hemisphere, resolution, polar_deviation, ...
@@ -193,7 +194,7 @@ display('Calculating 1D responses in V1...')
 
 if strcmpi(DataToDemonstrate, 'ExpandingRing')
     t_reorder_index = [8:15, 1:7];
-    display('Reordering the time dimension of average results ...')
+    disp('Reordering the time dimension of average results ...')
 
     for k = 1:length(responses)
         if k == 1
@@ -210,7 +211,7 @@ end
 %% Making the visual stimuli of the data in gridded form 
 
 if UseSampleData
-    display('Making visual stimuli ...')
+    disp('Making visual stimuli ...')
     
     if isVisualStimulus
         filename = ['Data/ExpandingRingAndExpandingArc/VisualStimulus/', ...
@@ -235,7 +236,7 @@ end
 %   visualStimulus_smooth on a mat file for future use
 
 if saveMAT
-    display('Saving results in a mat file ...')
+    disp('Saving results in a mat file ...')
     
     filename = ['Data/ExpandingRingAndExpandingArc/GriddedMatFiles/',hemisphere,...
                 '.Scan',num2str(scanNo),'_resolution=',num2str(resolution),'.mat'];
@@ -267,7 +268,7 @@ end
 %% Saving the overlay files for freesurfer
 
 if saveOverlay
-    display('Saving overlay results in a mgz file ...')
+    disp('Saving overlay results in a mgz file ...')
     
     for i = 1:length(responses)
         if i==1
@@ -316,7 +317,7 @@ end
 
 %% Plotting the result 
 
-display('Plotting and saving the results ...')
+disp('Plotting and saving the results ...')
 
 % boolean variable
 % choose normalization = 1 if you want the responses to be normalized, 0
@@ -358,93 +359,99 @@ if strcmpi(DataToDemonstrate, 'ExpandingRing')
     % Time slices of responses in (x, y, t = tslice)
     tslice = 0:4:16;                % time slices of responses to show
     clim_factor1 = 5;               % decreasing the limits of the colorbar
-    fig1 = plot2D_TimeSlices(BOLD_signal, deconvResponses, x_experiment, y_experiment, t_experiment_orig, ...
+    fig1 = plot2D_VisualMap(visualStimulus_smooth, x_experiment, y_experiment, t_experiment_avg, ...
+                    tslice, zoom_lim, v1_boundary);
+    fig2 = plot2D_TimeSlices(BOLD_signal, deconvResponses, x_experiment, y_experiment, t_experiment_orig, ...
                     tslice, zoom_lim, params, normalization, clim_factor1, plot_what, v1_boundary);
-    fig2 = plot2D_TimeSlices(reordered_avg_BOLD_signal, reordered_deconvResponses_avg, ...
+    fig3 = plot2D_TimeSlices(reordered_avg_BOLD_signal, reordered_deconvResponses_avg, ...
                              x_experiment, y_experiment, t_experiment_avg, ...
                              tslice, zoom_lim, params, normalization, clim_factor1, plot_what, v1_boundary);
-    
-                         
+                
+
     % Evolution of responses as a movie                        
-    movie_filename = ['Figures/ExperimentalResults_', DataToDemonstrate, '.avi'];
+    movie_filename = ['Figures/ExperimentalResults_', DataToDemonstrate, '_Scan',num2str(scanNo), '.avi'];
     frame_rate = mean(diff(t))*2;                   % frames per second of movie
     
-    fig3 = plot2D_Movie(reordered_avg_BOLD_signal, reordered_deconvResponses_avg, x_experiment, y_experiment, t_experiment_avg, ...
+    fig4 = plot2D_Movie(reordered_avg_BOLD_signal, reordered_deconvResponses_avg, x_experiment, y_experiment, t_experiment_avg, ...
                  zoom_lim, params, normalization, clim_factor1, plot_what, movie_filename, frame_rate, v1_boundary);
     
     
     % Time series of V1 responses in (eccentricity, t)
     clim_factor2 = 1;
-    fig4 = plot_V1TimeEvolution(reordered_responses_1D, eccentricity.values(1:end-1), ...
+    fig5 = plot_V1TimeEvolution(reordered_responses_1D, eccentricity.values(1:end-1), ...
                                 t_experiment_avg, params, normalization, clim_factor2, plot_what);
                             
     
     % Normalized time profiles of V1 responses for different eccentricities
     eccentricity_interest = [0.5, 1.5, 2.5];
-    fig5 = plot_V1TimeProfilePerEccentricity(reordered_responses_1D, eccentricity.values(1:end-1), ...
+    fig6 = plot_V1TimeProfilePerEccentricity(reordered_responses_1D, eccentricity.values(1:end-1), ...
                                         eccentricity_interest, t_experiment_avg, plot_what);
                                     
     % Normalized time profiles of V1 responses for one eccentricity
     eccentricity_interest = 1.5;
-    fig6 = plot_V1TimeProfilePerEccentricity(reordered_responses_1D, eccentricity.values(1:end-1), ...
+    fig7 = plot_V1TimeProfilePerEccentricity(reordered_responses_1D, eccentricity.values(1:end-1), ...
                                         eccentricity_interest, t_experiment_avg, plot_what);
     
 elseif strcmpi(DataToDemonstrate, 'ExpandingArc')
     % Time slices of responses in (x, y, t = tslice)
     tslice = 0:4:16;                % time slices of responses to show
     clim_factor1 = 5;               % decreasing the limits of the colorbar
-    fig1 = plot2D_TimeSlices(BOLD_signal, deconvResponses, x_experiment, y_experiment, t_experiment_orig, ...
+    fig1 = plot2D_VisualMap(visualStimulus_smooth, x_experiment, y_experiment, t_experiment_avg, ...
+                    tslice, zoom_lim, v1_boundary);
+    fig2 = plot2D_TimeSlices(BOLD_signal, deconvResponses, x_experiment, y_experiment, t_experiment_orig, ...
                     tslice, zoom_lim, params, normalization, clim_factor1, plot_what, v1_boundary);
-    fig2 = plot2D_TimeSlices(avg_BOLD_signal, deconvResponses_avg, ...
+    fig3 = plot2D_TimeSlices(avg_BOLD_signal, deconvResponses_avg, ...
                              x_experiment, y_experiment, t_experiment_avg, ...
                              tslice, zoom_lim, params, normalization, clim_factor1, plot_what, v1_boundary);
 
                             
     % Evolution of responses as a movie                        
-    movie_filename = ['Figures/ExperimentalResults_', DataToDemonstrate, '.avi'];
+    movie_filename = ['Figures/ExperimentalResults_', DataToDemonstrate, '_Scan',num2str(scanNo), '.avi'];
     frame_rate = mean(diff(t))*2;                   % frames per second of movie
     
-    fig3 = plot2D_Movie(avg_BOLD_signal, deconvResponses_avg, x_experiment, y_experiment, t_experiment_avg, ...
+    fig4 = plot2D_Movie(avg_BOLD_signal, deconvResponses_avg, x_experiment, y_experiment, t_experiment_avg, ...
                  zoom_lim, params, normalization, clim_factor1, plot_what, movie_filename, frame_rate, v1_boundary);
     
     % Time series of V1 responses in (eccentricity, t)
     clim_factor2 = 1;
-    fig4 = plot_V1TimeEvolution(responses_1D, eccentricity.values(1:end-1), ...
+    fig5 = plot_V1TimeEvolution(responses_1D, eccentricity.values(1:end-1), ...
                                 t_experiment_avg, params, normalization, clim_factor2, plot_what);
                             
                             
     % Normalized time profiles of V1 responses for different eccentricities
     eccentricity_interest = [0.5, 1.5, 2.5];
-    fig5 = plot_V1TimeProfilePerEccentricity(responses_1D, eccentricity.values(1:end-1), ...
+    fig6 = plot_V1TimeProfilePerEccentricity(responses_1D, eccentricity.values(1:end-1), ...
                                         eccentricity_interest, t_experiment_avg, plot_what);
                                     
     % Normalized time profiles of V1 responses for one eccentricity
     eccentricity_interest = 1.5;
-    fig6 = plot_V1TimeProfilePerEccentricity(responses_1D, eccentricity.values(1:end-1), ...
+    fig7 = plot_V1TimeProfilePerEccentricity(responses_1D, eccentricity.values(1:end-1), ...
                                         eccentricity_interest, t_experiment_avg, plot_what);
 end
 
 % Cross-correlations of the response corresponding to what_correlation
 % with other responses
-fig7 = plot_CrossCorrelations(hemisphere, what_correlation);
+fig8 = plot_CrossCorrelations(hemisphere, what_correlation);
     
 set(fig1, 'PaperPositionMode','auto')     %# WYSIWYG
 set(fig2, 'PaperPositionMode','auto')     %# WYSIWYG
-set(fig4, 'PaperPositionMode','auto')     %# WYSIWYG
+set(fig3, 'PaperPositionMode','auto')     %# WYSIWYG
 set(fig5, 'PaperPositionMode','auto')     %# WYSIWYG
 set(fig6, 'PaperPositionMode','auto')     %# WYSIWYG
 set(fig7, 'PaperPositionMode','auto')     %# WYSIWYG
-print(fig1, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_TimeSlices.eps'])
-print(fig2, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_TimeSlices_avg.eps'])
-print(fig4, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_V1TimeEvolution.eps'])
-print(fig5, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_V1TimeProfilePerEccentricity.eps'])
-print(fig6, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_V1TimeProfileOneEccentricity.eps'])
-print(fig7, '-painters', '-depsc', ['Figures/ExperimentalResults_ExpandingRingAndExpandingArc_CrossCorrelationWith_', what_correlation, '.eps'])
+set(fig8, 'PaperPositionMode','auto')     %# WYSIWYG
+print(fig1, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_Scan',num2str(scanNo), '_VisualStimulus.eps'])
+print(fig2, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_Scan',num2str(scanNo), '_TimeSlices.eps'])
+print(fig3, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_Scan',num2str(scanNo), '_TimeSlices_avg.eps'])
+print(fig5, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_Scan',num2str(scanNo), '_V1TimeEvolution.eps'])
+print(fig6, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_Scan',num2str(scanNo), '_V1TimeProfilePerEccentricity.eps'])
+print(fig7, '-painters', '-depsc', ['Figures/ExperimentalResults_', DataToDemonstrate, '_Scan',num2str(scanNo), '_V1TimeProfileOneEccentricity.eps'])
+print(fig8, '-painters', '-depsc', ['Figures/ExperimentalResults_ExpandingRingAndExpandingArc_CrossCorrelationWith_', what_correlation, '.eps'])
 
 %% END
 
 close(fig1); close(fig2); close(fig3); 
 close(fig4); close(fig5); close(fig6);
-close(fig7);
-display('Finished')
-display([])
+close(fig7); close(fig8);
+disp('Finished')
+disp([])

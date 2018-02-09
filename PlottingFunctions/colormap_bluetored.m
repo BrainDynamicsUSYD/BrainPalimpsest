@@ -1,5 +1,4 @@
 function cmap = colormap_bluetored
-
 %% colormap_bluetored.m
 %
 % Makes a customized colormap from blue (most negative) to white (zero) to 
@@ -9,7 +8,8 @@ function cmap = colormap_bluetored
 %
 % Output: cmap   : 80 x 3 array containing the rgb values
 % 
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

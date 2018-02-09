@@ -27,7 +27,8 @@ function fig = plot1D_Movie(BOLD_signal, deconvResponses, x, t, params, ...
 %
 % Output: fig           : figure handle of the resulting movie
 %
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 % find index of t=0

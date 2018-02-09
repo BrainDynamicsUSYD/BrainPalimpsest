@@ -37,7 +37,8 @@ function deconvResponses = deconvolution_HybridWiener_2D(BOLD_signal, distancex,
 % >> deconvResponses.neural                % gives out the deconvolved
 %                                           2D neural activity
 % 
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

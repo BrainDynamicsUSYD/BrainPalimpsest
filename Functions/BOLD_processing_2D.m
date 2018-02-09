@@ -34,7 +34,8 @@ function [BOLD_processed, x, y, t] = BOLD_processing_2D(BOLD_signal, ...
                                         % gives out the processed BOLD
 %                                         and new distance/time vectors 
 % 
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 % convert all NaNs to zeros

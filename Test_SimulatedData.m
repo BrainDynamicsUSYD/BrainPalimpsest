@@ -4,14 +4,15 @@
 % simulated BOLD data driven by a noisy spatiotemporal stationary Gaussian 
 % neural activity
 %
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% Adding the paths of the sub-directories for direct access of files
 % This is not necessary if entire Palimpsest toolbox is added to the Matlab 
 % path via addpath(genpath('PalimpsestToolboxLocation')) where
 % PalimpsestToolboxLocation is the location of the toolbox
 
-% addpath('Data', 'Functions', 'PlottingFunctions')
+addpath('Data', 'Functions', 'PlottingFunctions')
 
 %% Loading the default values of the model parameters 
 

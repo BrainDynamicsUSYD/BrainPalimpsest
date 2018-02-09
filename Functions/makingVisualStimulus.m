@@ -33,7 +33,8 @@ function [v1_boundary, thmat, thmat_templateSpace, rmat, visualStimulus_raw, ...
 %         visualStimulus_smooth : matrix of smoothed version of the visual
 %                                 stimulus
 % 
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% Defining necessary parameters
 
@@ -80,7 +81,7 @@ B = bwboundaries(v1, 4, 'noholes');
 v1_boundary.x = B{1}(:,2);
 v1_boundary.y = B{1}(:,1);
 v1_boundary.matrix = zeros(size(v1));
-for i=1:length(v1_boundary.x);
+for i=1:length(v1_boundary.x)
     v1_boundary.matrix(v1_boundary.y(i), v1_boundary.x(i)) = 1;
 end
 

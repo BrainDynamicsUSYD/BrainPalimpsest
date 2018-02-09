@@ -20,7 +20,8 @@ function [grid_BOLD, F] = makingGriddedFlat_BOLD(hemisphere, ...
 % Output: grid_BOLD     : matrix of converted gridded BOLD data
 %         F             : interpolant object
 % 
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% Preparing the vertices, faces, and overlay
 

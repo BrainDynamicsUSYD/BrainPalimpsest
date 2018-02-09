@@ -29,7 +29,8 @@ function deconvResponses = deconvolution_Forward_1D(neural_signal, ...
 % >> deconvResponses = deconvolution_Forward_1D(neural_signal, distance, time, params)
 % >> deconvResponses.CBF                  % gives out the deconvolved 1D CBF
 % 
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

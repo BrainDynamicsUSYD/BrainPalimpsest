@@ -27,7 +27,8 @@ function T = calcTransFuncs_toY_2D(kx, ky, w, params)
 %    Pang et al. (J. Roy. Soc. Interface, 2016), and the updated model in
 %    Pang et al. (NeuroImage, 2016).
 %
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

@@ -23,7 +23,8 @@ function out = coord2freq_2D(T, kx, ky, w, padN)
 % >> out = coord2freq_2D(Tcoord, kx, ky, w) % gives out 2D Fourier transform 
 %                                             of the T_Yphi HRF
 %
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

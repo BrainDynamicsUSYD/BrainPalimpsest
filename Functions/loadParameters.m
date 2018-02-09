@@ -17,7 +17,8 @@ classdef loadParameters < matlab.mixin.Copyable
 % 2. The methods section dynamically calculates/refreshes the dependent
 %    parameters when other independent parameters are changed.
 %
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
     properties 

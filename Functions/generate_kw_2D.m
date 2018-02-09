@@ -21,7 +21,8 @@ function [kx, ky, w] = generate_kw_2D(kxsamp, kysamp, wsamp, Nkx, Nky, Nw)
 % >> [kx, ky, w] = generate_kw_2D(kxsamp, kysamp, wsamp, Nkx, Nky, Nw); 
                                           % gives out the frequency vectors
 % 
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

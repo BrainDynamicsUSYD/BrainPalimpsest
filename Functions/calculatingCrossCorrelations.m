@@ -15,7 +15,8 @@ function calculatingCrossCorrelations(hemisphere, resolution, what_correlation)
 %
 % Output: none
 % 
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 % hemisphere = 'lh';

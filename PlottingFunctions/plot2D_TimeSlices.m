@@ -40,7 +40,8 @@ function fig = plot2D_TimeSlices(BOLD_signal, deconvResponses, x, y, t, ...
 %
 % Output: fig           : figure handle of the resulting plot
 %
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 % find index of t=0
@@ -211,7 +212,8 @@ else
         else
             subplot('Position', [initial_x+width*x_factor*(j-1) initial_y-height*y_factor*0 width height])
         end
-        imagesc(x*1e3, y*1e3, data(:,:,tslice_ind(j)))
+        imagesc(x(xmin_ind:xmax_ind)*1e3, y(ymin_ind:ymax_ind)*1e3, ...
+                    data(ymin_ind:ymax_ind,xmin_ind:xmax_ind,tslice_ind(j)))
         if nargin==12
             hold on;
             plot(x(v1_boundary.x)*1e3, y(v1_boundary.y)*1e3, 'k-', 'linewidth', 0.5)

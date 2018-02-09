@@ -24,7 +24,8 @@ function fig = plot1D_CenterTimeSeries(BOLD_signal, deconvResponses, x, t, param
 %
 % Output: fig           : figure handle of the resulting plot
 % 
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 % find index of x=0
@@ -69,7 +70,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
     fig = figure('Position', [200, 200, 800, 500]);
     
     data = real(BOLD_signal(x0,tstart:end));
-    subplot(3,4,2, 'Parent', fig, 'Position', [0.43 initial_y width height]);
+    subplot('Position', [0.43 initial_y width height]);
     plot(t(tstart:end), data, 'k-', 'Linewidth', 2);  
     title(titles{1}, 'fontsize', 15);
     set(gca, 'fontSize', 13, 'xlim', [0, 20], 'xtick', 0:5:20, ...
@@ -78,7 +79,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
 
     for sub = 5:8
         data = real(deconvResponses.(responses{sub-3})(x0,tstart:end));
-        subplot(3,4,sub, 'Parent', fig, 'Position', [initial_x+width*x_factor*(sub-5) initial_y-height*y_factor width height]);
+        subplot('Position', [initial_x+width*x_factor*(sub-5) initial_y-height*y_factor width height]);
         plot(t(tstart:end), data, 'k-', 'Linewidth', 2);
         title(titles{sub-3}, 'fontsize',15);
         set(gca, 'fontSize', 13, 'xlim', [0, 20], 'xtick', 0:5:20, ...
@@ -88,7 +89,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
 
     for sub = 9:12
         data = real(deconvResponses.(responses{sub-3})(x0,tstart:end));
-        subplot(3,4,sub, 'Parent', fig, 'Position', [initial_x+width*x_factor*(sub-9) initial_y-height*y_factor*2 width height])
+        subplot('Position', [initial_x+width*x_factor*(sub-9) initial_y-height*y_factor*2 width height])
         plot(t(tstart:end), data, 'k-', 'Linewidth', 2);
         title(titles{sub-3},'fontsize',15);
         set(gca, 'fontSize', 13, 'xlim', [0, 20], 'xtick', 0:5:20, ...
@@ -104,7 +105,7 @@ elseif strcmpi(plot_what, 'all_no_BOLD')
     
     for sub = 1:4
         data = real(deconvResponses.(responses{sub+1})(x0,tstart:end));
-        subplot(2,4,sub, 'Parent', fig, 'Position', [initial_x+width*x_factor*(sub-1) initial_y width height]);
+        subplot('Position', [initial_x+width*x_factor*(sub-1) initial_y width height]);
         plot(t(tstart:end), data, 'k-', 'Linewidth', 2);
         title(titles{sub+1}, 'fontsize',15);
         set(gca, 'fontSize', 13, 'xlim', [0, 20], 'xtick', 0:5:20, ...
@@ -114,7 +115,7 @@ elseif strcmpi(plot_what, 'all_no_BOLD')
 
     for sub = 5:8
         data = real(deconvResponses.(responses{sub+1})(x0,tstart:end));
-        subplot(2,4,sub, 'Parent', fig, 'Position', [initial_x+width*x_factor*(sub-5) initial_y-height*y_factor width height])
+        subplot('Position', [initial_x+width*x_factor*(sub-5) initial_y-height*y_factor width height])
         plot(t(tstart:end), data, 'k-', 'Linewidth', 2);
         title(titles{sub+1},'fontsize',15);
         set(gca, 'fontSize', 13, 'xlim', [0, 20], 'xtick', 0:5:20, ...

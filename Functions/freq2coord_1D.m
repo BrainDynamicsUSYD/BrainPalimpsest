@@ -20,7 +20,9 @@ function out = freq2coord_1D(T, kx, w, padN)
 %                                           of the T_Yphi transfer function
 %
 % Kevin Aquino, University of Sydney, 2014
-% James Pang, University of Sydney, 2016
+% Original: Kevin Aquino, University of Sydney, 2014
+%           James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

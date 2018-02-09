@@ -22,7 +22,8 @@ function fig = plot_V1TimeProfilePerEccentricity(responses_1D, eccentricity, ...
 %
 % Output: fig                   : figure handle of the resulting plot
 %
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% 
 
@@ -47,7 +48,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
             sub = subplot(length(eccentricity_interest), 1, i);
             pos = get(gca, 'Position');
             delete(sub)
-            subplot(length(eccentricity_interest), 1, i,'Parent', fig, 'Position', pos+[0.01,0,-0.2,0])
+            subplot('Position', pos+[0.01,0,-0.2,0])
 
             hold on;
             for j=1:length(responses)-1
@@ -88,7 +89,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
             sub = subplot(3, 1, i);
             pos = get(gca, 'Position');
             delete(sub)
-            subplot(3, 1, i,'Parent', fig, 'Position', pos+[0.01,0,-0.2,0])
+            subplot('Position', pos+[0.01,0,-0.2,0])
 
             hold on;
             for j=((1:3)+3*(i-1))
@@ -112,7 +113,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
             
             leg = legend(titles{(1:3)+3*(i-1)});
             set(leg, 'FontSize', 12, 'Orientation','Vertical',...
-                'box','off','Position',get(gca, 'Position')+[0.83,0.15,-0.8,-0.2])
+                'box','off','Position',get(gca, 'Position')+[0.68,0.15,-0.5,-0.2])
         end
     end
     
@@ -126,7 +127,7 @@ elseif strcmpi(plot_what, 'all_no_BOLD')
             sub = subplot(length(eccentricity_interest), 1, i);
             pos = get(gca, 'Position');
             delete(sub)
-            subplot(length(eccentricity_interest), 1, i,'Parent', fig, 'Position', pos+[0.01,0,-0.2,0])
+            subplot('Position', pos+[0.01,0,-0.2,0])
 
             hold on;
             for j=2:length(responses)-1
@@ -166,7 +167,7 @@ elseif strcmpi(plot_what, 'all_no_BOLD')
             sub = subplot(3, 1, i);
             pos = get(gca, 'Position');
             delete(sub)
-            subplot(3, 1, i,'Parent', fig, 'Position', pos+[0.01,0,-0.2,0])
+            subplot('Position', pos+[0.01,0,-0.2,0])
 
             hold on;
             for j=((1:3)+3*(i-1))
@@ -196,7 +197,7 @@ elseif strcmpi(plot_what, 'all_no_BOLD')
                 leg = legend(titles{(1:3)+3*(i-1)});
             end
             set(leg, 'FontSize', 12, 'Orientation','Vertical',...
-                'box','off','Position',get(gca, 'Position')+[0.83,0.15,-0.8,-0.2])
+                'box','off','Position',get(gca, 'Position')+[0.68,0.15,-0.5,-0.2])
         end
     end
     
@@ -208,7 +209,7 @@ else
             sub = subplot(length(eccentricity_interest), 1, i);
             pos = get(gca, 'Position');
             delete(sub)
-            subplot(length(eccentricity_interest), 1, i,'Parent', fig, 'Position', pos+[0.05,0,-0.02,0])
+            subplot('Position', pos+[0.05,0,-0.02,0])
 
             response_index = find(strcmpi(responses, plot_what));
             data = real(responses_1D.(responses{response_index}));
@@ -231,12 +232,12 @@ else
             end
         end
     else
-        fig = figure('Position', [200, 200, 400, 120]);
+        fig = figure('Position', [200, 200, 350, 120]);
         
         sub = subplot(1, 1, 1);
         pos = get(gca, 'Position');
         delete(sub)
-        subplot(1, 1, 1,'Parent', fig, 'Position', pos+[0.01,0.02,-0.2,0])
+        subplot('Position', pos+[0.03,0.2,-0.2,-0.2])
         
         response_index = find(strcmpi(responses, plot_what));
         data = real(responses_1D.(responses{response_index}));
@@ -254,7 +255,7 @@ else
         
         leg = legend(titles{response_index});
         set(leg, 'FontSize', 12, 'Orientation','Vertical',...
-            'box','off','Position',get(gca, 'Position')+[0.83,0.15,-0.8,-0.2])
+            'box','off','Position',get(gca, 'Position')+[0.68,0.15,-0.5,-0.2])
     end
 end
     

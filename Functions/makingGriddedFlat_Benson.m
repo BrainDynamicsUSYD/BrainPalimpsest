@@ -16,7 +16,8 @@ function [grid_Benson, F_Benson] = makingGriddedFlat_Benson(hemisphere, ...
 % Output: grid_Benson   : matrix of converted gridded Benson map
 %         F_Benson      : interpolant object
 % 
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
                     
 %% Preparing the vertices, faces, and overlay
 

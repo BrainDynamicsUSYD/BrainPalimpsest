@@ -37,7 +37,8 @@ function [templates, eccentricity, polar, responses_1D] = ...
 %                             Possible fields are BOLD, reconvBOLD, neural, neuroglial, 
 %                             CBF, CBV, dHb, Wmode, Lmode, and Dmode.
 % 
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% Loading relevant files
 

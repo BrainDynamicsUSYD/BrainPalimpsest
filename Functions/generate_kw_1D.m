@@ -18,8 +18,9 @@ function [kx, w] = generate_kw_1D(kxsamp, wsamp, Nkx, Nw)
 % >> [kx, w] = generate_kw_1D(kxsamp, wsamp, Nkx, Nw); % gives out the frequency
 %                                                  vectors
 % 
-% Kevin Aquino, University of Sydney, 2014
-% James Pang, University of Sydney, 2016
+% Original: Kevin Aquino, University of Sydney, 2014
+%           James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

@@ -33,7 +33,8 @@ function deconvolved = wienerDeconvolution_2D(signal, trans_func, ...
 % >> deconvolved = wienerDeconvolution_2D(BOLD_signal, T.T_Yphi, kx, ky, w, noise) 
 % >> deconvolved.coord      % gives out the deconvolved phi in coordinate space
 % 
-% James Pang, University of Sydney, 2016
+% Original: James Pang, University of Sydney, 2016
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 

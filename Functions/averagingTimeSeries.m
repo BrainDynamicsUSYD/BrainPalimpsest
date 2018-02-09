@@ -13,7 +13,8 @@ function [avg_grid] = averagingTimeSeries(scanNo, grid_data)
 %
 % Output: avg_grid      : matrix of average of grid_data
 % 
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %% 
 

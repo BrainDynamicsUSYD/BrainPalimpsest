@@ -23,7 +23,8 @@ function fig = plot_V1TimeEvolution(responses_1D, eccentricity, t, params, ...
 %
 % Output: fig           : figure handle of the resulting plot
 %
-% James Pang, University of Sydney, 2017
+% Original: James Pang, University of Sydney, 2017
+% Version 1.2: James Pang, University of Sydney, Jan 2018
 
 %%
 
@@ -57,7 +58,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
     cmap = colormap_bluetored;
     
     data = real(responses_1D.(responses{1}));
-    subplot(3,4,2, 'Parent', fig, 'Position', [0.43 initial_y width height]);
+    subplot('Position', [0.43 initial_y width height]);
     contourf(eccentricity, t, data, 10, 'EdgeColor','none'); 
     title(titles{1}, 'fontsize', 15);
     set(gca, 'fontSize', 13, 'xlim', [eccentricity(1), eccentricity(end)], ...
@@ -72,7 +73,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
 
     for sub = 5:8
         data = real(responses_1D.(responses{sub-3}));
-        subplot(3,4,sub, 'Parent', fig, 'Position', [initial_x+width*x_factor*(sub-5) initial_y-height*y_factor width height]);
+        subplot('Position', [initial_x+width*x_factor*(sub-5) initial_y-height*y_factor width height]);
         contourf(eccentricity, t, data, 10, 'EdgeColor','none');
         title(titles{sub-3}, 'fontsize',15);
         set(gca, 'fontSize', 13, 'xlim', [eccentricity(1), eccentricity(end)], ...
@@ -90,7 +91,7 @@ if strcmpi(plot_what, 'all_w_BOLD')
 
     for sub = 9:12
         data = real(responses_1D.(responses{sub-3}));
-        subplot(3,4,sub, 'Parent', fig, 'Position', [initial_x+width*x_factor*(sub-9) initial_y-height*y_factor*2 width height])
+        subplot('Position', [initial_x+width*x_factor*(sub-9) initial_y-height*y_factor*2 width height])
         contourf(eccentricity, t, data, 10, 'EdgeColor','none');
         title(titles{sub-3},'fontsize',15);
         set(gca, 'fontSize', 13, 'xlim', [eccentricity(1), eccentricity(end)], ...
@@ -116,7 +117,7 @@ elseif strcmpi(plot_what, 'all_no_BOLD')
     
     for sub = 1:4
         data = real(responses_1D.(responses{sub+1}));
-        subplot(2,4,sub, 'Parent', fig, 'Position', [initial_x+width*x_factor*(sub-1) initial_y width height]);
+        subplot('Position', [initial_x+width*x_factor*(sub-1) initial_y width height]);
         contourf(eccentricity, t, data, 10, 'EdgeColor','none');
         title(titles{sub+1}, 'fontsize',15);
         set(gca, 'fontSize', 13, 'xlim', [eccentricity(1), eccentricity(end)], ...
@@ -134,7 +135,7 @@ elseif strcmpi(plot_what, 'all_no_BOLD')
 
     for sub = 5:8
         data = real(responses_1D.(responses{sub+1}));
-        subplot(2,4,sub, 'Parent', fig, 'Position', [initial_x+width*x_factor*(sub-5) initial_y-height*y_factor width height])
+        subplot('Position', [initial_x+width*x_factor*(sub-5) initial_y-height*y_factor width height])
         contourf(eccentricity, t, data, 10, 'EdgeColor','none');
         title(titles{sub+1},'fontsize',15);
         set(gca, 'fontSize', 13, 'xlim', [eccentricity(1), eccentricity(end)], ...
