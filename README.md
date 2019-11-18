@@ -23,7 +23,7 @@ Some important aspects you need to do before using the toolbox:
 
 # Citation
 
-If you use our code in your research, please cite us as follows (will be updated as soon as the paper gets accepted):
+If you use our code in your research, please cite us as follows:
 
 J.C. Pang, K.M. Aquino, P.A. Robinson, T.C. Lacy, M.M. Schira, Biophysically based method to deconvolve spatiotemporal neurovascular signals from fMRI data, Journal of Neuroscience Methods, 308, 6-20, 2018.
 
